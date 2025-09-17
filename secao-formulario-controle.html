@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Formulário de Contato — Olmos Ferraz Advocacia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
+      :root {
+        --bg: #131313;
+        --ink: #eaeaea;
+        --muted: #a9a9a9;
+        --line: #242424;
+        --brand: #b8926b;
+        --brand-2: #7b5b40;
+        --card: #171717;
+        --hover: #1c1c1c;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--ink);
+        font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial,
+          sans-serif;
+        padding: 2rem;
+      }
+
+      .title {
+        font-size: clamp(1.4rem, 2.6vw, 2rem);
+        font-weight: 800;
+        letter-spacing: -0.02em;
+      }
+
+      .sub {
+        color: var(--muted);
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        border: 1px solid var(--line);
+        padding: 0.7rem 1rem;
+        border-radius: 0.7rem;
+        font-weight: 600;
+        transition: 0.2s;
+      }
+
+      .btn:hover {
+        background: var(--hover);
+      }
+
+      .btn-primary {
+        border-color: #2a2a2a;
+        background: #1a1a1a;
+      }
+
+      .input {
+        width: 100%;
+        background: #151515;
+        border: 1px solid var(--line);
+        color: #fff;
+        border-radius: 0.7rem;
+        padding: 0.8rem 1rem;
+        outline: none;
+        transition: 0.2s;
+      }
+
+      .input::placeholder {
+        color: #8a8a8a;
+      }
+
+      .input:focus {
+        border-color: var(--brand);
+        box-shadow: 0 0 0 4px rgba(184, 146, 107, 0.12);
+      }
+
+      .textarea {
+        min-height: 120px;
+        resize: vertical;
+      }
+    </style>
+  </head>
+
+  <body>
+    <section id="contato">
+      <h2 class="title">Formulário de Contato</h2>
+      <p class="sub mt-2">
+        Conte brevemente sua necessidade. Este formulário é “Demo” e não envia
+        e-mail real.
+      </p>
+
+      <form id="contactForm" class="mt-6 grid gap-4 max-w-2xl">
+        <div class="grid gap-4 md:grid-cols-2">
+          <div>
+            <label class="text-sm">Nome</label>
+            <input
+              class="input mt-1"
+              type="text"
+              name="nome"
+              placeholder="Seu nome"
+              required
+            />
+          </div>
+
+          <div>
+            <label class="text-sm">E-mail</label>
+            <input
+              class="input mt-1"
+              type="email"
+              name="email"
+              placeholder="voce@exemplo.com"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="grid gap-4 md:grid-cols-2">
+          <div>
+            <label class="text-sm">Telefone</label>
+            <input
+              class="input mt-1"
+              type="tel"
+              name="telefone"
+              placeholder="(00) 00000-0000"
+            />
+          </div>
+
+          <div>
+            <label class="text-sm">Área de interesse</label>
+            <select class="input mt-1" name="area">
+              <option value="Cível">Cível</option>
+              <option value="Bancário">Bancário</option>
+              <option value="Família">Família</option>
+              <option value="Imobiliário">Imobiliário</option>
+              <option value="Outro">Outro</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="text-sm">Mensagem</label>
+          <textarea
+            class="input textarea mt-1"
+            name="mensagem"
+            placeholder="Como podemos ajudar?"
+            required
+          ></textarea>
+        </div>
+
+        <div class="flex gap-3">
+          <button type="submit" class="btn btn-primary">Enviar (Demo)</button>
+          <button type="reset" class="btn">Limpar</button>
+        </div>
+
+        <div id="formStatus" class="hidden text-sm"></div>
+      </form>
+    </section>
+
+    <script>
+      /* ========= Formulário (Demo) ========= */
+      const form = document.getElementById("contactForm");
+      const statusBox = document.getElementById("formStatus");
+
+      form?.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const data = Object.fromEntries(new FormData(form).entries());
+        statusBox.className = "text-sm mt-2";
+        statusBox.textContent =
+          "Mensagem registrada no modo Demo. Em produção, configuramos o envio.";
+        statusBox.classList.remove("hidden");
+        form.reset();
+        console.log("Demo form data:", data);
+      });
+    </script>
+  </body>
+</html>

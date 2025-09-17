@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Redes Sociais — Olmos Ferraz Advocacia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
+
+      :root {
+        --bg: #131313;
+        --ink: #eaeaea;
+        --muted: #a9a9a9;
+        --line: #242424;
+        --card: #171717;
+        --hover: #1c1c1c;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--ink);
+        font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      }
+
+      .section {
+        padding: 56px 0;
+      }
+
+      .wrap {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 1.25rem;
+      }
+
+      .title {
+        font-size: clamp(1.4rem, 2.6vw, 2rem);
+        font-weight: 800;
+        letter-spacing: -0.02em;
+      }
+
+      .sub {
+        color: var(--muted);
+      }
+
+      .card {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 1rem;
+        padding: 1.25rem;
+        transition: 0.2s;
+      }
+
+      .card:hover {
+        background: var(--hover);
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        border: 1px solid var(--line);
+        padding: 0.7rem 1rem;
+        border-radius: 0.7rem;
+        font-weight: 600;
+        transition: 0.2s;
+      }
+
+      .btn:hover {
+        background: var(--hover);
+      }
+
+      .grid-3 {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      @media (min-width: 900px) {
+        .grid-3 {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      .line {
+        height: 1px;
+        background: linear-gradient(90deg, transparent, var(--line), transparent);
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Redes Sociais -->
+    <section id="redes" class="section">
+      <div class="wrap">
+        <h2 class="title">Redes Sociais</h2>
+        <p class="sub mt-2">
+          Conecte-se conosco. Abaixo estão blocos “Demo” seguros; substituiremos
+          pelos seus perfis quando desejar.
+        </p>
+
+        <div class="grid-3 mt-6">
+          <!-- Instagram Demo -->
+          <div class="card">
+            <div class="font-semibold mb-2">Instagram</div>
+            <div class="rounded-lg border border-[var(--line)] overflow-hidden">
+              <div class="p-4 sub text-sm">Prévia de feed (Demo)</div>
+              <div class="h-40 flex items-center justify-center sub text-sm bg-[#141414]">
+                Embed seguro aqui
+              </div>
+            </div>
+            <a class="btn mt-3" target="_blank" rel="noopener" href="https://instagram.com/">
+              Abrir Instagram
+            </a>
+          </div>
+
+          <!-- TikTok Demo -->
+          <div class="card">
+            <div class="font-semibold mb-2">TikTok</div>
+            <div class="rounded-lg border border-[var(--line)] overflow-hidden">
+              <div class="p-4 sub text-sm">Prévia de vídeos (Demo)</div>
+              <div class="h-40 flex items-center justify-center sub text-sm bg-[#141414]">
+                Embed seguro aqui
+              </div>
+            </div>
+            <a class="btn mt-3" target="_blank" rel="noopener" href="https://www.tiktok.com/">
+              Abrir TikTok
+            </a>
+          </div>
+
+          <!-- LinkedIn Demo -->
+          <div class="card">
+            <div class="font-semibold mb-2">LinkedIn</div>
+            <div class="rounded-lg border border-[var(--line)] overflow-hidden">
+              <div class="p-4 sub text-sm">Prévia de perfil/empresa (Demo)</div>
+              <div class="h-40 flex items-center justify-center sub text-sm bg-[#141414]">
+                Embed seguro aqui
+              </div>
+            </div>
+            <a class="btn mt-3" target="_blank" rel="noopener" href="https://www.linkedin.com/">
+              Abrir LinkedIn
+            </a>
+          </div>
+        </div>
+
+        <div class="sub text-xs mt-4">
+          Nota: por limitação do Canva Code, embeds estão em modo “Demo” sem login.
+          Posso apontar para seus perfis reais quando enviar os links.
+        </div>
+      </div>
+
+      <div class="line mt-8"></div>
+    </section>
+  </body>
+</html>

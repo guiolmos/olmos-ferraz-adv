@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Artigos — Olmos Ferraz Advocacia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap");
+
+      :root {
+        --bg: #131313;
+        --ink: #eaeaea;
+        --muted: #a9a9a9;
+        --line: #242424;
+        --brand: #b8926b;
+        --brand-2: #7b5b40;
+        --card: #171717;
+        --hover: #1c1c1c;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--ink);
+        font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial,
+          sans-serif;
+      }
+
+      .section {
+        padding: 56px 0;
+      }
+
+      .wrap {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 1.25rem;
+      }
+
+      .title {
+        font-size: clamp(1.4rem, 2.6vw, 2rem);
+        font-weight: 800;
+        letter-spacing: -0.02em;
+      }
+
+      .sub {
+        color: var(--muted);
+      }
+
+      .line {
+        height: 1px;
+        background: linear-gradient(90deg, transparent, var(--line), transparent);
+      }
+
+      .card {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 1rem;
+        padding: 1.25rem;
+        transition: 0.2s;
+      }
+
+      .card:hover {
+        background: var(--hover);
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        border: 1px solid var(--line);
+        padding: 0.7rem 1rem;
+        border-radius: 0.7rem;
+        font-weight: 600;
+        transition: 0.2s;
+      }
+
+      .btn:hover {
+        background: var(--hover);
+      }
+
+      .btn-primary {
+        border-color: #2a2a2a;
+        background: #1a1a1a;
+      }
+
+      .grid-3 {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      @media (min-width: 900px) {
+        .grid-3 {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      /* Modal */
+      .modal {
+        position: fixed;
+        inset: 0;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+        z-index: 50;
+      }
+
+      .modal.active {
+        display: flex;
+      }
+
+      .modal-bg {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.6);
+      }
+
+      .modal-box {
+        position: relative;
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 1rem;
+        padding: 1.5rem;
+        max-width: 600px;
+        width: 100%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Artigos -->
+    <section id="artigos" class="section">
+      <div class="wrap">
+        <h2 class="title">Artigos</h2>
+        <p class="sub mt-2">Conteúdos breves e objetivos.</p>
+
+        <div class="grid-3 mt-6">
+          <article class="card">
+            <div class="text-sm sub">Cível</div>
+            <div class="font-semibold mt-1">Cuidados ao assinar contratos</div>
+            <button class="btn mt-4 read">Ler resumo</button>
+          </article>
+
+          <article class="card">
+            <div class="text-sm sub">Bancário</div>
+            <div class="font-semibold mt-1">Juros abusivos: o que observar</div>
+            <button class="btn mt-4 read">Ler resumo</button>
+          </article>
+
+          <article class="card">
+            <div class="text-sm sub">Imobiliário</div>
+            <div class="font-semibold mt-1">Locação segura: pontos-chave</div>
+            <button class="btn mt-4 read">Ler resumo</button>
+          </article>
+        </div>
+      </div>
+
+      <div class="line mt-8"></div>
+    </section>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+      <div class="modal-bg"></div>
+      <div class="modal-box">
+        <div class="flex items-center justify-between">
+          <div class="font-semibold" id="modalTitle">Resumo</div>
+          <button id="modalClose" class="btn">Fechar</button>
+        </div>
+        <div class="sub mt-3 text-sm" id="modalBody">
+          Conteúdo do resumo aqui.
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const modal = document.getElementById("modal");
+      const modalTitle = document.getElementById("modalTitle");
+      const modalBody = document.getElementById("modalBody");
+      const modalClose = document.getElementById("modalClose");
+
+      function abrirModal(titulo, texto) {
+        modalTitle.textContent = titulo;
+        modalBody.textContent =
+          texto ||
+          "Este é um resumo breve para leitura rápida. Substitua pelo seu conteúdo final.";
+        modal.classList.add("active");
+      }
+
+      function fecharModal() {
+        modal.classList.remove("active");
+      }
+
+      modalClose.addEventListener("click", fecharModal);
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal || e.target.classList.contains("modal-bg")) {
+          fecharModal();
+        }
+      });
+
+      document.querySelectorAll(".read").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const titulo = btn.previousElementSibling.textContent;
+          abrirModal(titulo, "Resumo do artigo em breve.");
+        });
+      });
+    </script>
+  </body>
+</html>

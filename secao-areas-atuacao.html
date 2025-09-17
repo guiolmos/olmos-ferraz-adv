@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Áreas de Atuação — Olmos Ferraz Advocacia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
+
+      :root {
+        --bg: #131313;
+        --ink: #eaeaea;
+        --muted: #a9a9a9;
+        --line: #242424;
+        --brand: #b8926b;
+        --brand-2: #7b5b40;
+        --card: #171717;
+        --hover: #1c1c1c;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--ink);
+        font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      }
+
+      .section {
+        padding: 56px 0;
+      }
+
+      .wrap {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 1.25rem;
+      }
+
+      .title {
+        font-size: clamp(1.4rem, 2.6vw, 2rem);
+        font-weight: 800;
+        letter-spacing: -0.02em;
+      }
+
+      .sub {
+        color: var(--muted);
+      }
+
+      .card {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 1rem;
+        padding: 1.25rem;
+        transition: 0.2s;
+      }
+
+      .card:hover {
+        background: #181818;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        border: 1px solid var(--line);
+        padding: 0.7rem 1rem;
+        border-radius: 0.7rem;
+        font-weight: 600;
+        transition: 0.2s;
+      }
+
+      .btn:hover {
+        background: var(--hover);
+      }
+
+      .btn-primary {
+        border-color: #2a2a2a;
+        background: #1a1a1a;
+      }
+
+      .grid-3 {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      @media (min-width: 900px) {
+        .grid-3 {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      .line {
+        height: 1px;
+        background: linear-gradient(90deg, transparent, var(--line), transparent);
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Áreas de Atuação -->
+    <section id="areas" class="section">
+      <div class="wrap">
+        <h2 class="title">Áreas de Atuação</h2>
+        <p class="sub mt-2">Atuamos com foco em quatro frentes essenciais.</p>
+
+        <div class="grid-3 mt-6">
+          <article class="card">
+            <div class="font-semibold">Cível</div>
+            <p class="sub mt-1 text-sm">
+              Contratos, responsabilidade civil, cobranças e execuções.
+            </p>
+            <button class="btn mt-4 learn" data-title="Cível">Saiba mais</button>
+          </article>
+
+          <article class="card">
+            <div class="font-semibold">Bancário</div>
+            <p class="sub mt-1 text-sm">
+              Revisões, cobranças indevidas e defesa em execuções.
+            </p>
+            <button class="btn mt-4 learn" data-title="Bancário">Saiba mais</button>
+          </article>
+
+          <article class="card">
+            <div class="font-semibold">Família</div>
+            <p class="sub mt-1 text-sm">
+              Divórcio, guarda, alimentos e partilha.
+            </p>
+            <button class="btn mt-4 learn" data-title="Família">Saiba mais</button>
+          </article>
+        </div>
+      </div>
+
+      <div class="line mt-8"></div>
+    </section>
+
+    <!-- Modal -->
+    <div id="modal" class="fixed inset-0 hidden items-center justify-center p-4 z-50">
+      <div class="absolute inset-0 bg-black/60"></div>
+
+      <div
+        class="relative bg-[var(--card)] border border-[var(--line)] rounded-xl p-5 max-w-lg w-full"
+      >
+        <div class="flex items-center justify-between">
+          <div class="font-semibold" id="modalTitle">Título</div>
+          <button id="modalClose" class="btn" aria-label="Fechar">Fechar</button>
+        </div>
+
+        <div class="sub mt-3 text-sm" id="modalBody">Conteúdo.</div>
+
+        <div class="mt-5 flex justify-end">
+          <a href="#contato" id="modalAction" class="btn btn-primary">Solicitar atendimento</a>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      /* ========= Modal básico ========= */
+      const modal = document.getElementById("modal");
+      const modalTitle = document.getElementById("modalTitle");
+      const modalBody = document.getElementById("modalBody");
+      const modalClose = document.getElementById("modalClose");
+
+      const detalhesAreas = {
+        Cível:
+          "Contratos, danos materiais e morais, cobranças e execuções. Foco em soluções rápidas e claras.",
+        Bancário:
+          "Revisões, defesas em cobranças e negociação com instituições financeiras.",
+        Família:
+          "Divórcio, guarda, alimentos e partilha, com abordagem técnica e humana.",
+        Imobiliário:
+          "Locação, compra e venda, regularização e usucapião, com segurança documental.",
+      };
+
+      function abrirModal(titulo, texto) {
+        modalTitle.textContent = titulo;
+        modalBody.textContent = texto || "Detalhes em breve.";
+        modal.classList.remove("hidden");
+        modal.classList.add("flex");
+      }
+
+      function fecharModal() {
+        modal.classList.add("hidden");
+        modal.classList.remove("flex");
+      }
+
+      modalClose?.addEventListener("click", fecharModal);
+      modal?.addEventListener("click", (e) => {
+        if (e.target === modal) fecharModal();
+      });
+
+      document.querySelectorAll(".learn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const t = btn.dataset.title;
+          abrirModal(t, detalhesAreas[t]);
+        });
+      });
+    </script>
+  </body>
+</html>

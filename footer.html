@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <title>Footer — Olmos Ferraz Advocacia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
+      :root {
+        --bg: #131313;
+        --ink: #eaeaea;
+        --muted: #a9a9a9;
+        --line: #242424;
+        --brand: #b8926b;
+        --brand-2: #7b5b40;
+        --card: #171717;
+        --hover: #1c1c1c;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--ink);
+        font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial,
+          sans-serif;
+        padding: 2rem;
+      }
+
+      .wrap {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 1.25rem;
+      }
+
+      .sub {
+        color: var(--muted);
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Footer minimal -->
+    <footer class="border-t border-[var(--line)]">
+      <div
+        class="wrap py-6 text-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-4"
+      >
+        <div class="flex items-center gap-3">
+          <div
+            class="size-8 rounded-lg flex items-center justify-center"
+            style="background: linear-gradient(180deg, var(--brand), var(--brand-2));"
+          >
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              aria-hidden="true"
+            >
+              <circle cx="12" cy="12" r="9.5" stroke="white" opacity=".6" />
+              <path
+                d="M7 12a5 5 0 1 1 10 0 5 5 0 1 1-10 0Z"
+                stroke="#fff"
+                opacity=".9"
+              />
+            </svg>
+          </div>
+
+          <div>
+            <div class="font-semibold">Olmos Ferraz Advocacia</div>
+            <div class="sub text-xs">© Todos os direitos reservados</div>
+          </div>
+        </div>
+
+        <div class="flex gap-4">
+          <a class="sub hover:text-white" href="#sobre">Sobre</a>
+          <a class="sub hover:text-white" href="#areas">Áreas</a>
+          <a class="sub hover:text-white" href="#contato">Contato</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
