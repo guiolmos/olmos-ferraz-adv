@@ -79,15 +79,15 @@
         background: #1a1a1a;
       }
 
-      .grid-3 {
+      .grid-2 {
         display: grid;
         grid-template-columns: 1fr;
         gap: 1rem;
       }
 
       @media (min-width: 900px) {
-        .grid-3 {
-          grid-template-columns: repeat(3, 1fr);
+        .grid-2 {
+          grid-template-columns: repeat(2, 1fr);
         }
       }
 
@@ -105,14 +105,20 @@
         <h2 class="title">Áreas de Atuação</h2>
         <p class="sub mt-2">Atuamos com foco em quatro frentes essenciais.</p>
 
-        <div class="grid-3 mt-6">
+        <div class="grid-2 mt-6">
           <article class="card">
             <div class="font-semibold">Cível</div>
             <p class="sub mt-1 text-sm">
               Confecção e revisão de contratos, cobranças judicias, execução de valores na justiça
               e acessoria em negociações.
             </p>
-            <button class="btn mt-4 learn" data-title="Cível">Saiba mais</button>
+            <button
+              class="btn mt-4"
+              data-title="Cível"
+              onclick="abrirModal('Cível', detalhesAreas[1])"
+            >
+              Saiba mais
+            </button>
           </article>
 
           <article class="card">
@@ -121,7 +127,13 @@
               Revisões de juros abusivos, defesas em cobranças indevidas, defesas em execuções de dívidas
               e processos contra instituições financeiras.
             </p>
-            <button class="btn mt-4 learn" data-title="Bancário">Saiba mais</button>
+            <button 
+              class="btn mt-4"
+              data-title="Bancário"
+              onclick="abrirModal('Bancário', detalhesAreas[2])"
+            > 
+              Saiba mais
+            </button>
           </article>
 
           <article class="card">
@@ -130,7 +142,25 @@
               Ajuízamento de divórcio, pedidos de guarda, alimentos e partilha de bens.
               Abertura e revisão de inventários e testamentos.
             </p>
-            <button class="btn mt-4 learn" data-title="Família">Saiba mais</button>
+            <button
+             class="btn mt-4"
+             data-title="Família & Sucessões"
+             onclick="abrirModal('Família & Sucessões', detalhesAreas[3])"
+            >
+              Saiba mais
+            </button>
+          </article>
+
+          <article class="card">
+            <div class="font-semibold">Imobiliário</div>
+            <div class="sub mt-1 text-sm">Regularização de imóveis, usucapião, manutenções de pesso, revisões de contrato de aluguel. Acessoria em compra e venda de imóveis</div>
+            <button
+              class="btn mt-4"
+              data-title="Imobiliário"
+              onclick="abrirModal('Imobiliário', detalhesAreas[4])"
+            >
+              Saiba mais
+            </button>
           </article>
         </div>
       </div>
@@ -139,7 +169,10 @@
     </section>
 
     <!-- Modal -->
-    <div id="modal" class="fixed inset-0 hidden items-center justify-center p-4 z-50">
+    <div
+     class="fixed inset-0 hidden items-center justify-center p-4 z-50"
+     id="modal"
+    >
       <div class="absolute inset-0 bg-black/60"></div>
 
       <div
@@ -147,13 +180,17 @@
       >
         <div class="flex items-center justify-between">
           <div class="font-semibold" id="modalTitle">Título</div>
-          <button id="modalClose" class="btn" aria-label="Fechar">Fechar</button>
+          <button class="btn" id="modalClose" aria-label="Fechar">Fechar</button>
         </div>
 
-        <div class="sub mt-3 text-sm" id="modalBody">Conteúdo.</div>
+        <div class="mt-3 text-sm text-[var(--muted)]" id="modalBody" >
+          Conteúdo.
+        </div>
 
         <div class="mt-5 flex justify-end">
-          <a href="#contato" id="modalAction" class="btn btn-primary">Solicitar atendimento</a>
+          <a class="btn btn-primary"id="modalAction">
+            Solicitar atendimento
+          </a>
         </div>
       </div>
     </div>
@@ -164,17 +201,14 @@
       const modalTitle = document.getElementById("modalTitle");
       const modalBody = document.getElementById("modalBody");
       const modalClose = document.getElementById("modalClose");
+      const modalAction = document.getElementById("modalAction");
 
-      const detalhesAreas = {
-        Cível:
-          "Atuamos na elaboração e revisão de contratos, garantindo segurança e acessoria jurídica para todas os seus documentos. Nosso trabalho é pautado na prestação de assessoria completa às negociações de nossos clientes, oferecendo suporte em todas as etapas do processo. No âmbito das cobranças judiciais, promovemos ações voltadas à reparação de danos e indenizações, abrangendo, por exemplo, casos de seguradoras que se recusam a cumprir o pagamento do sinistro, acidentes de trânsito em que o motorista responsável se evade do local, prejuízos ocasionados por obras nas imediações, entre todos os tipos de indenizações. Além da parte cível e contratual, também buscamos judicialmente a satisfação de créditos devidos a nossos clientes. Nosso compromisso é oferecer soluções rápidas, claras e eficazes, sempre com foco em proteger seus direitos e trazer segurança para cada decisão.",
-        Bancário:
-          "Cansado de juros abusivos? Com problemas em seu financiamento por conta de tarifas bancárias inesgotáveis? Se enxerga com problemas para negociar o seu empréstimo? Revisamos seus contratos de empréstimos e financiamento e procuramos as soluções jurídicas mais adequadas para o seu caso. Participamos de revisões em contratos, defesas em cobranças e negociação com instituições financeiras, para que dentro da medida do possível, possamos recuperar suas noites de sono",
-        Família & Sucessões:
-          "Entendemos que assuntos de família são sempre delicados e sensíveis, por isso atuamos com acolhimento e descrição nos mais diversos temas que envolvem o direito de família, participamos de divórcios, pedidos de guarda, de alimentos e até de partilha sempre com abordagem técnica e humana. Nosso maior faco é garantir que os clientes tenham seus direitos respeitados sem que isso se torne um grande problema judicial. Na parte de sucessões, atuamos com inventários e testamentos, nosso objetivo é permitir que nossos clientes, durante seu momento de luto, possam realizar a mais tranquila e sossegada partilha da herança.",
-        Imobiliário:
-          "Em nossa atuação imobiliária atuamos na revisão de contratos de locação, compra e venda de imóveis. Além dos contratos, participamos do processo de regularização da matrícula dos imóveis, nos pedidos de usucapião e nas manutenções de poesse. Acima de tudo, prezamos pela segurança documental e pela celeridade processual. Entregamos suporte aos nossos clientes em todas as fases do processo, buscando sempre objetividade e a melhor solução dos problemas.",
-      };
+      const detalhesAreas = [
+        "Atuamos na elaboração e revisão de contratos, garantindo segurança e acessoria jurídica para todas os seus documentos. Nosso trabalho é pautado na prestação de assessoria completa às negociações de nossos clientes, oferecendo suporte em todas as etapas do processo. No âmbito das cobranças judiciais, promovemos ações voltadas à reparação de danos e indenizações, abrangendo, por exemplo, casos de seguradoras que se recusam a cumprir o pagamento do sinistro, acidentes de trânsito em que o motorista responsável se evade do local, prejuízos ocasionados por obras nas imediações, entre todos os tipos de indenizações. Além da parte cível e contratual, também buscamos judicialmente a satisfação de créditos devidos a nossos clientes. Nosso compromisso é oferecer soluções rápidas, claras e eficazes, sempre com foco em proteger seus direitos e trazer segurança para cada decisão.", //cível
+        "Cansado de juros abusivos? Com problemas em seu financiamento por conta de tarifas bancárias inesgotáveis? Se enxerga com problemas para negociar o seu empréstimo? Revisamos seus contratos de empréstimos e financiamento e procuramos as soluções jurídicas mais adequadas para o seu caso. Participamos de revisões em contratos, defesas em cobranças e negociação com instituições financeiras, para que dentro da medida do possível, possamos recuperar suas noites de sono", //bancário
+        "Entendemos que assuntos de família são sempre delicados e sensíveis, por isso atuamos com acolhimento e descrição nos mais diversos temas que envolvem o direito de família, participamos de divórcios, pedidos de guarda, de alimentos e até de partilha sempre com abordagem técnica e humana. Nosso maior faco é garantir que os clientes tenham seus direitos respeitados sem que isso se torne um grande problema judicial. Na parte de sucessões, atuamos com inventários e testamentos, nosso objetivo é permitir que nossos clientes, durante seu momento de luto, possam realizar a mais tranquila e sossegada partilha da herança.", //Família & Sucessões
+        "Em nossa atuação imobiliária atuamos na revisão de contratos de locação, compra e venda de imóveis. Além dos contratos, participamos do processo de regularização da matrícula dos imóveis, nos pedidos de usucapião e nas manutenções de posse. Acima de tudo, prezamos pela segurança documental e pela celeridade processual. Entregamos suporte aos nossos clientes em todas as fases do processo, buscando sempre objetividade e a melhor solução dos problemas.", //Imobiliário
+      ];
 
       function abrirModal(titulo, texto) {
         modalTitle.textContent = titulo;
@@ -188,16 +222,14 @@
         modal.classList.remove("flex");
       }
 
+      function solicitarAtendimento() {
+        fecharModal();
+        window.location.href = "https://wa.me/55912345678";
+      }
+
       modalClose?.addEventListener("click", fecharModal);
       modal?.addEventListener("click", (e) => {
         if (e.target === modal) fecharModal();
-      });
-
-      document.querySelectorAll(".learn").forEach((btn) => {
-        btn.addEventListener("click", () => {
-          const t = btn.dataset.title;
-          abrirModal(t, detalhesAreas[t]);
-        });
       });
     </script>
   </body>
